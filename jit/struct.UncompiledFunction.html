@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `UncompiledFunction` struct in crate `jit`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, UncompiledFunction">
+
+    <title>jit::UncompiledFunction - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <section class="sidebar">
+        
+        <p class='location'><a href='index.html'>jit</a></p><div class='block mod'><h2>Modules</h2><a class='mod ' href='flags/index.html' title='Call flags to a function'>flags</a><a class='mod ' href='kind/index.html' title='The integer representation of a type'>kind</a><a class='mod ' href='typecs/index.html' title='Type constants'>typecs</a></div><div class='block struct'><h2>Structs</h2><a class='struct ' href='struct.AnyFunction.html' title=''>AnyFunction</a><a class='struct ' href='struct.Builder.html' title='A context that is in the build phase while generating IR'>Builder</a><a class='struct ' href='struct.CallFlags.html' title=''>CallFlags</a><a class='struct ' href='struct.CompiledFunction.html' title=''>CompiledFunction</a><a class='struct ' href='struct.Context.html' title=''>Context</a><a class='struct ' href='struct.Field.html' title='A single field of a struct'>Field</a><a class='struct ' href='struct.Fields.html' title='Iterates through all the fields of a struct'>Fields</a><a class='struct ' href='struct.Label.html' title='A label in the code that can be branched to in instructions'>Label</a><a class='struct ' href='struct.Needed.html' title='An ELF dependency iterator'>Needed</a><a class='struct ' href='struct.Params.html' title='Iterator through all the arguments a function takes'>Params</a><a class='struct ' href='struct.ReadElf.html' title=''>ReadElf</a><a class='struct ' href='struct.ReadElfError.html' title='An error from trying to open the ELF, including the filename'>ReadElfError</a><a class='struct ' href='struct.TaggedType.html' title=''>TaggedType</a><a class='struct ' href='struct.Type.html' title='An object that represents a native system type. Each `Type` represents a basic system type, be it a primitive, a struct, a union, a pointer, or a function signature. The library uses this information to lay out values in memory. Types are not attached to a context so they are reference-counted by LibJIT, so internally they are represented as `Rc&lt;TypeData&gt;`.'>Type</a><a class='struct ' href='struct.TypeKind.html' title=''>TypeKind</a><a class='struct current' href='struct.UncompiledFunction.html' title='A function which has not been compiled yet, so it can have instructions added to it.'>UncompiledFunction</a><a class='struct ' href='struct.Value.html' title='Values form the backbone of the storage system in `libjit`. Every value in the system, be it a constant, a local variable, or a temporary result, is represented by an object of type `Value`. The JIT then allocates registers or memory locations to the values as appropriate.'>Value</a><a class='struct ' href='struct.WriteElf.html' title=''>WriteElf</a></div><div class='block enum'><h2>Enums</h2><a class='enum ' href='enum.Abi.html' title='A platform&#39;s application binary interface'>Abi</a><a class='enum ' href='enum.ReadElfErrorCode.html' title='An error from trying to open the ELF'>ReadElfErrorCode</a></div><div class='block trait'><h2>Traits</h2><a class='trait ' href='trait.Compile.html' title='A type that can be compiled into a LibJIT representation'>Compile</a><a class='trait ' href='trait.Function.html' title='A function that can be compiled or not'>Function</a><a class='trait ' href='trait.NativeRef.html' title='A structure that wraps a native object'>NativeRef</a><a class='trait ' href='trait.StaticType.html' title='A static type that is owned by LibJIT itself'>StaticType</a></div><div class='block fn'><h2>Functions</h2><a class='fn ' href='fn.get.html' title='Get the Rust type given as a type descriptor'>get</a><a class='fn ' href='fn.init.html' title='Initialise the library and prepare for operations'>init</a><a class='fn ' href='fn.supports_threads.html' title='Check if the JIT supports theads'>supports_threads</a><a class='fn ' href='fn.supports_virtual_memory.html' title='Check if the JIT supports virtual memory'>supports_virtual_memory</a><a class='fn ' href='fn.uses_interpreter.html' title='Check if the JIT is using a fallback interpreter'>uses_interpreter</a></div>
+    </section>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press 'S' to search, '?' for more options..."
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>jit</a>::<wbr><a class='struct' href=''>UncompiledFunction</a><wbr></span><span class='out-of-band'><span id='render-detail'>
+            <a id="collapse-all" href="#">[-]
+            </a>&nbsp;<a id="expand-all" href="#">[+]</a>
+        </span><a id='src-5192' href='../src/jit/function.rs.html#127-132'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct UncompiledFunction&lt;'a&gt; {
+    // some fields omitted
+}</pre><div class='docblock'><p>A function which has not been compiled yet, so it can have instructions added to it.</p>
+
+<p>A function persists for the lifetime of its containing context. This represents
+the function in the &quot;building&quot; state, where the user constructs instructions
+that represents the function body. Once the build process is complete, the
+user calls <code>function.compile()</code> to convert it into its executable form.</p>
+</div><h2 id='methods'>Methods</h2><h3 class='impl'><a class='stability Unmarked' title='No stability level'></a><code>impl&lt;'a&gt; <a class='struct' href='../jit/struct.UncompiledFunction.html' title='jit::UncompiledFunction'>UncompiledFunction</a>&lt;'a&gt;</code></h3><div class='impl-items'><h4 id='method.new' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.new' class='fnname'>new</a>(context: &amp;'a <a class='struct' href='../jit/struct.Builder.html' title='jit::Builder'>Builder</a>, signature: <a class='struct' href='../jit/struct.Type.html' title='jit::Type'>Type</a>) -&gt; <a class='struct' href='../jit/struct.UncompiledFunction.html' title='jit::UncompiledFunction'>UncompiledFunction</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Create a new function block and associate it with a JIT context.
+It is recommended that you call <code>Function::new</code> and <code>function.compile()</code>
+in the closure you give to <code>context.build(...)</code>.</p>
+
+<p>This will protect the JIT&#39;s internal data structures within a
+multi-threaded environment.</p>
+</div><h4 id='method.new_nested' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.new_nested' class='fnname'>new_nested</a>(context: &amp;'a <a class='struct' href='../jit/struct.Builder.html' title='jit::Builder'>Builder</a>, signature: <a class='struct' href='../jit/struct.Type.html' title='jit::Type'>Type</a>, parent: &amp;'a <a class='struct' href='../jit/struct.UncompiledFunction.html' title='jit::UncompiledFunction'>UncompiledFunction</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.UncompiledFunction.html' title='jit::UncompiledFunction'>UncompiledFunction</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Create a new function block and associate it with a JIT context.
+In addition, this function is nested inside the specified <em>parent</em>
+function and is able to access its parent&#39;s (and grandparent&#39;s) local
+variables.</p>
+
+<p>The front end is responsible for ensuring that the nested function can
+never be called by anyone except its parent and sibling functions.
+The front end is also responsible for ensuring that the nested function
+is compiled before its parent.</p>
+</div><h4 id='method.insn_convert' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_convert' class='fnname'>insn_convert</a>(&amp;self, v: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;, t: <a class='struct' href='../jit/struct.Type.html' title='jit::Type'>Type</a>, overflow_check: <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a>) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that converts the value to the type given</p>
+</div><h4 id='method.insn_of' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_of' class='fnname'>insn_of</a>&lt;T&gt;(&amp;self, val: &amp;T) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt; <span class='where'>where T: <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a></span></code></h4>
+<div class='docblock'><p>Make an instructional representation of a Rust value</p>
+</div><h4 id='method.insn_uses_catcher' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_uses_catcher' class='fnname'>insn_uses_catcher</a>(&amp;self)</code></h4>
+<div class='docblock'><p>Notify the function building process that this function has a catch block
+in it. This must be called before any code that is part of a try block</p>
+</div><h4 id='method.insn_throw' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_throw' class='fnname'>insn_throw</a>(&amp;self, retval: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;)</code></h4>
+<div class='docblock'><p>Throw an exception from the function with the value given</p>
+</div><h4 id='method.insn_return' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_return' class='fnname'>insn_return</a>(&amp;self, retval: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;)</code></h4>
+<div class='docblock'><p>Return from the function with the value given</p>
+</div><h4 id='method.insn_default_return' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_default_return' class='fnname'>insn_default_return</a>(&amp;self)</code></h4>
+<div class='docblock'><p>Return from the function</p>
+</div><h4 id='method.insn_mul' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_mul' class='fnname'>insn_mul</a>(&amp;self, v1: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;, v2: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that multiplies the values</p>
+</div><h4 id='method.insn_mul_ovf' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_mul_ovf' class='fnname'>insn_mul_ovf</a>(&amp;self, v1: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;, v2: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that multiplies the values and throws upon overflow</p>
+</div><h4 id='method.insn_add' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_add' class='fnname'>insn_add</a>(&amp;self, v1: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;, v2: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that adds the values</p>
+</div><h4 id='method.insn_add_ovf' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_add_ovf' class='fnname'>insn_add_ovf</a>(&amp;self, v1: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;, v2: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that adds the values and throws upon overflow</p>
+</div><h4 id='method.insn_sub' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_sub' class='fnname'>insn_sub</a>(&amp;self, v1: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;, v2: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that subtracts the second value from the first</p>
+</div><h4 id='method.insn_sub_ovf' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_sub_ovf' class='fnname'>insn_sub_ovf</a>(&amp;self, v1: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;, v2: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that subtracts the second value from the first and throws upon overflow</p>
+</div><h4 id='method.insn_div' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_div' class='fnname'>insn_div</a>(&amp;self, v1: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;, v2: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that divides the first number by the second</p>
+</div><h4 id='method.insn_rem' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_rem' class='fnname'>insn_rem</a>(&amp;self, v1: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;, v2: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that finds the remainder when the first number is
+divided by the second</p>
+</div><h4 id='method.insn_leq' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_leq' class='fnname'>insn_leq</a>(&amp;self, v1: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;, v2: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that checks if the first value is lower than or
+equal to the second</p>
+</div><h4 id='method.insn_geq' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_geq' class='fnname'>insn_geq</a>(&amp;self, v1: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;, v2: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that checks if the first value is greater than or
+equal to the second</p>
+</div><h4 id='method.insn_lt' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_lt' class='fnname'>insn_lt</a>(&amp;self, v1: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;, v2: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that checks if the first value is lower than the second</p>
+</div><h4 id='method.insn_gt' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_gt' class='fnname'>insn_gt</a>(&amp;self, v1: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;, v2: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that checks if the first value is greater than the second</p>
+</div><h4 id='method.insn_eq' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_eq' class='fnname'>insn_eq</a>(&amp;self, v1: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;, v2: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that checks if the values are equal</p>
+</div><h4 id='method.insn_neq' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_neq' class='fnname'>insn_neq</a>(&amp;self, v1: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;, v2: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that checks if the values are not equal</p>
+</div><h4 id='method.insn_and' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_and' class='fnname'>insn_and</a>(&amp;self, v1: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;, v2: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that performs a bitwise and on the two values</p>
+</div><h4 id='method.insn_or' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_or' class='fnname'>insn_or</a>(&amp;self, v1: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;, v2: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that performs a bitwise or on the two values</p>
+</div><h4 id='method.insn_xor' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_xor' class='fnname'>insn_xor</a>(&amp;self, v1: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;, v2: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that performs a bitwise xor on the two values</p>
+</div><h4 id='method.insn_not' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_not' class='fnname'>insn_not</a>(&amp;self, value: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that performs a bitwise not on the two values</p>
+</div><h4 id='method.insn_shl' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_shl' class='fnname'>insn_shl</a>(&amp;self, v1: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;, v2: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that performs a left bitwise shift on the first
+value by the second value</p>
+</div><h4 id='method.insn_shr' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_shr' class='fnname'>insn_shr</a>(&amp;self, v1: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;, v2: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that performs a right bitwise shift on the first
+value by the second value</p>
+</div><h4 id='method.insn_ushr' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_ushr' class='fnname'>insn_ushr</a>(&amp;self, v1: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;, v2: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that performs a right bitwise shift on the first
+value by the second value</p>
+</div><h4 id='method.insn_neg' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_neg' class='fnname'>insn_neg</a>(&amp;self, value: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that performs a bitwise negate on the value</p>
+</div><h4 id='method.insn_dup' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_dup' class='fnname'>insn_dup</a>(&amp;self, value: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that duplicates the value given</p>
+</div><h4 id='method.insn_load' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_load' class='fnname'>insn_load</a>(&amp;self, src: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that loads a value from a src value</p>
+</div><h4 id='method.insn_load_relative' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_load_relative' class='fnname'>insn_load_relative</a>(&amp;self, src: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;, offset: <a href='http://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>, ty: <a class='struct' href='../jit/struct.Type.html' title='jit::Type'>Type</a>) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that loads a value from a src value</p>
+</div><h4 id='method.insn_store' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_store' class='fnname'>insn_store</a>(&amp;self, dest: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;, src: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;)</code></h4>
+<div class='docblock'><p>Make an instruction that stores a value at a destination value</p>
+</div><h4 id='method.insn_store_relative' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_store_relative' class='fnname'>insn_store_relative</a>(&amp;self, dest: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;, offset: <a href='http://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>, src: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;)</code></h4>
+<div class='docblock'><p>Make an instruction that stores a value a certain offset away from a
+destination value</p>
+</div><h4 id='method.insn_label' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_label' class='fnname'>insn_label</a>(&amp;self, label: &amp;mut <a class='struct' href='../jit/struct.Label.html' title='jit::Label'>Label</a>&lt;'a&gt;)</code></h4>
+<div class='docblock'><p>Make an instruction that sets a label</p>
+</div><h4 id='method.insn_branch' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_branch' class='fnname'>insn_branch</a>(&amp;self, label: &amp;mut <a class='struct' href='../jit/struct.Label.html' title='jit::Label'>Label</a>&lt;'a&gt;)</code></h4>
+<div class='docblock'><p>Make an instruction that branches to a certain label</p>
+</div><h4 id='method.insn_branch_if' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_branch_if' class='fnname'>insn_branch_if</a>(&amp;self, value: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;, label: &amp;mut <a class='struct' href='../jit/struct.Label.html' title='jit::Label'>Label</a>&lt;'a&gt;)</code></h4>
+<div class='docblock'><p>Make an instruction that branches to a certain label if the value is true</p>
+</div><h4 id='method.insn_branch_if_not' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_branch_if_not' class='fnname'>insn_branch_if_not</a>(&amp;self, value: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;, label: &amp;mut <a class='struct' href='../jit/struct.Label.html' title='jit::Label'>Label</a>&lt;'a&gt;)</code></h4>
+<div class='docblock'><p>Make an instruction that branches to a certain label if the value is false</p>
+</div><h4 id='method.insn_jump_table' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_jump_table' class='fnname'>insn_jump_table</a>(&amp;self, value: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;, labels: <a href='http://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;mut [</a><a class='struct' href='../jit/struct.Label.html' title='jit::Label'>Label</a>&lt;'a&gt;<a href='http://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>)</code></h4>
+<div class='docblock'><p>Make an instruction that branches to a label in the table</p>
+</div><h4 id='method.insn_acos' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_acos' class='fnname'>insn_acos</a>(&amp;self, v: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that gets the inverse cosine of the number given</p>
+</div><h4 id='method.insn_asin' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_asin' class='fnname'>insn_asin</a>(&amp;self, v: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that gets the inverse sine of the number given</p>
+</div><h4 id='method.insn_atan' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_atan' class='fnname'>insn_atan</a>(&amp;self, v: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that gets the inverse tangent of the number given</p>
+</div><h4 id='method.insn_atan2' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_atan2' class='fnname'>insn_atan2</a>(&amp;self, v1: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;, v2: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that gets the inverse tangent of the numbers given</p>
+</div><h4 id='method.insn_ceil' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_ceil' class='fnname'>insn_ceil</a>(&amp;self, v: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that finds the nearest integer above a number</p>
+</div><h4 id='method.insn_cos' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_cos' class='fnname'>insn_cos</a>(&amp;self, v: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that gets the consine of the number given</p>
+</div><h4 id='method.insn_cosh' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_cosh' class='fnname'>insn_cosh</a>(&amp;self, v: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that gets the hyperbolic consine of the number given</p>
+</div><h4 id='method.insn_exp' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_exp' class='fnname'>insn_exp</a>(&amp;self, v: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that gets the natural logarithm rased to the power
+of the number</p>
+</div><h4 id='method.insn_floor' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_floor' class='fnname'>insn_floor</a>(&amp;self, v: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that finds the nearest integer below a number</p>
+</div><h4 id='method.insn_log' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_log' class='fnname'>insn_log</a>(&amp;self, v: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that gets the natural logarithm of the number</p>
+</div><h4 id='method.insn_log10' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_log10' class='fnname'>insn_log10</a>(&amp;self, v: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that gets the base 10 logarithm of the number</p>
+</div><h4 id='method.insn_pow' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_pow' class='fnname'>insn_pow</a>(&amp;self, v1: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;, v2: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction the gets the result of raising the first value to
+the power of the second value</p>
+</div><h4 id='method.insn_rint' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_rint' class='fnname'>insn_rint</a>(&amp;self, v: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction the gets the result of rounding the value to the
+nearest integer</p>
+</div><h4 id='method.insn_round' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_round' class='fnname'>insn_round</a>(&amp;self, v: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction the gets the result of rounding the value to the
+nearest integer</p>
+</div><h4 id='method.insn_sin' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_sin' class='fnname'>insn_sin</a>(&amp;self, v: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction the gets the sine of the number</p>
+</div><h4 id='method.insn_sinh' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_sinh' class='fnname'>insn_sinh</a>(&amp;self, v: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction the gets the hyperbolic sine of the number</p>
+</div><h4 id='method.insn_sqrt' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_sqrt' class='fnname'>insn_sqrt</a>(&amp;self, v: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction the gets the square root of a number</p>
+</div><h4 id='method.insn_tan' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_tan' class='fnname'>insn_tan</a>(&amp;self, v: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction the gets the tangent of a number</p>
+</div><h4 id='method.insn_tanh' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_tanh' class='fnname'>insn_tanh</a>(&amp;self, v: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction the gets the hyperbolic tangent of a number</p>
+</div><h4 id='method.insn_trunc' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_trunc' class='fnname'>insn_trunc</a>(&amp;self, v: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that truncates the value</p>
+</div><h4 id='method.insn_is_nan' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_is_nan' class='fnname'>insn_is_nan</a>(&amp;self, v: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that checks if the number is NaN</p>
+</div><h4 id='method.insn_is_finite' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_is_finite' class='fnname'>insn_is_finite</a>(&amp;self, v: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that checks if the number is finite</p>
+</div><h4 id='method.insn_is_inf' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_is_inf' class='fnname'>insn_is_inf</a>(&amp;self, v: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that checks if the number is  infinite</p>
+</div><h4 id='method.insn_abs' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_abs' class='fnname'>insn_abs</a>(&amp;self, v: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that gets the absolute value of a number</p>
+</div><h4 id='method.insn_min' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_min' class='fnname'>insn_min</a>(&amp;self, v1: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;, v2: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that gets the smallest of two numbers</p>
+</div><h4 id='method.insn_max' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_max' class='fnname'>insn_max</a>(&amp;self, v1: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;, v2: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that gets the biggest of two numbers</p>
+</div><h4 id='method.insn_sign' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_sign' class='fnname'>insn_sign</a>(&amp;self, v: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that gets the sign of a number</p>
+</div><h4 id='method.insn_call' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_call' class='fnname'>insn_call</a>&lt;F: <a class='trait' href='../jit/trait.Function.html' title='jit::Function'>Function</a>&lt;'a&gt;&gt;(&amp;self, name: <a class='enum' href='http://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;&amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>&gt;, func: &amp;F, sig: <a class='enum' href='http://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='../jit/struct.Type.html' title='jit::Type'>Type</a>&gt;, args: <a href='http://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;mut [</a><a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;<a href='http://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>, flags: <a class='struct' href='../jit/struct.CallFlags.html' title='jit::CallFlags'>CallFlags</a>) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Call the function, which may or may not be translated yet</p>
+</div><h4 id='method.insn_call_indirect' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_call_indirect' class='fnname'>insn_call_indirect</a>(&amp;self, func: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;, signature: <a class='struct' href='../jit/struct.Type.html' title='jit::Type'>Type</a>, args: <a href='http://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;mut [</a><a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;<a href='http://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>, flags: <a class='struct' href='../jit/struct.CallFlags.html' title='jit::CallFlags'>CallFlags</a>) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that calls a function that has the signature given
+with some arguments through a pointer to the fucntion</p>
+</div><h4 id='method.insn_call_native0' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_call_native0' class='fnname'>insn_call_native0</a>&lt;R&gt;(&amp;self, name: <a class='enum' href='http://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;&amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>&gt;, native_func:  extern "C" fn() -&gt; R, signature: <a class='struct' href='../jit/struct.Type.html' title='jit::Type'>Type</a>, flags: <a class='struct' href='../jit/struct.CallFlags.html' title='jit::CallFlags'>CallFlags</a>) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that calls a Rust function that has the signature
+given with no arguments and expects a return value</p>
+</div><h4 id='method.insn_call_native1' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_call_native1' class='fnname'>insn_call_native1</a>&lt;A, R&gt;(&amp;self, name: <a class='enum' href='http://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;&amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>&gt;, native_func:  extern "C" fn(A) -&gt; R, signature: <a class='struct' href='../jit/struct.Type.html' title='jit::Type'>Type</a>, args: <a href='http://doc.rust-lang.org/nightly/std/primitive.slice.html'>[<a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;; 1]</a>, flags: <a class='struct' href='../jit/struct.CallFlags.html' title='jit::CallFlags'>CallFlags</a>) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that calls a Rust function that has the signature
+given with a single argument and expects a return value</p>
+</div><h4 id='method.insn_call_native2' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_call_native2' class='fnname'>insn_call_native2</a>&lt;A, B, R&gt;(&amp;self, name: <a class='enum' href='http://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;&amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>&gt;, native_func:  extern "C" fn(A, B) -&gt; R, signature: <a class='struct' href='../jit/struct.Type.html' title='jit::Type'>Type</a>, args: <a href='http://doc.rust-lang.org/nightly/std/primitive.slice.html'>[<a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;; 2]</a>, flags: <a class='struct' href='../jit/struct.CallFlags.html' title='jit::CallFlags'>CallFlags</a>) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that calls a Rust function that has the signature
+given with two arguments and expects a return value</p>
+</div><h4 id='method.insn_call_native3' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_call_native3' class='fnname'>insn_call_native3</a>&lt;A, B, C, R&gt;(&amp;self, name: <a class='enum' href='http://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;&amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>&gt;, native_func:  extern "C" fn(A, B, C) -&gt; R, signature: <a class='struct' href='../jit/struct.Type.html' title='jit::Type'>Type</a>, args: <a href='http://doc.rust-lang.org/nightly/std/primitive.slice.html'>[<a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;; 3]</a>, flags: <a class='struct' href='../jit/struct.CallFlags.html' title='jit::CallFlags'>CallFlags</a>) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that calls a Rust function that has the signature
+given with three arguments and expects a return value</p>
+</div><h4 id='method.insn_call_native4' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_call_native4' class='fnname'>insn_call_native4</a>&lt;A, B, C, D, R&gt;(&amp;self, name: <a class='enum' href='http://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;&amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>&gt;, native_func:  extern "C" fn(A, B, C, D) -&gt; R, signature: <a class='struct' href='../jit/struct.Type.html' title='jit::Type'>Type</a>, args: <a href='http://doc.rust-lang.org/nightly/std/primitive.slice.html'>[<a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;; 4]</a>, flags: <a class='struct' href='../jit/struct.CallFlags.html' title='jit::CallFlags'>CallFlags</a>) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that calls a Rust function that has the signature
+given with four arguments and expects a return value</p>
+</div><h4 id='method.insn_memcpy' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_memcpy' class='fnname'>insn_memcpy</a>(&amp;self, dest: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;, source: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;, size: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<div class='docblock'><p>Make an instruction that copies memory from a source address to a destination address</p>
+</div><h4 id='method.insn_memmove' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_memmove' class='fnname'>insn_memmove</a>(&amp;self, dest: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;, source: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;, size: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<div class='docblock'><p>Make an instruction that moves memory from a source address to a destination address</p>
+</div><h4 id='method.insn_memset' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_memset' class='fnname'>insn_memset</a>(&amp;self, dest: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;, source: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;, size: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<div class='docblock'><p>Make an instruction that sets memory at the destination address</p>
+</div><h4 id='method.insn_alloca' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_alloca' class='fnname'>insn_alloca</a>(&amp;self, size: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that allocates some space</p>
+</div><h4 id='method.insn_address_of' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_address_of' class='fnname'>insn_address_of</a>(&amp;self, value: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Make an instruction that gets the address of a value</p>
+</div><h4 id='method.insn_if' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_if' class='fnname'>insn_if</a>&lt;B: <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.FnOnce.html' title='core::ops::FnOnce'>FnOnce</a>()&gt;(&amp;self, cond: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;, block: B)</code></h4>
+<div class='docblock'><p>Make instructions to run the block if the condition is met</p>
+</div><h4 id='method.insn_if_not' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_if_not' class='fnname'>insn_if_not</a>&lt;B: <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.FnOnce.html' title='core::ops::FnOnce'>FnOnce</a>()&gt;(&amp;self, cond: <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;, block: B)</code></h4>
+<div class='docblock'><p>Make instructions to run the block if the condition is not met</p>
+</div><h4 id='method.insn_loop' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_loop' class='fnname'>insn_loop</a>&lt;B: <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.FnOnce.html' title='core::ops::FnOnce'>FnOnce</a>()&gt;(&amp;self, block: B)</code></h4>
+<div class='docblock'><p>Make instructions to run the block forever</p>
+</div><h4 id='method.insn_loop_while' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_loop_while' class='fnname'>insn_loop_while</a>&lt;C: <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.FnOnce.html' title='core::ops::FnOnce'>FnOnce</a>() -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;, B: <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.FnOnce.html' title='core::ops::FnOnce'>FnOnce</a>()&gt;(&amp;self, cond: C, block: B)</code></h4>
+<div class='docblock'><p>Make instructions to run the block and continue running it so long
+as the condition is met</p>
+</div><h4 id='method.insn_while' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.insn_while' class='fnname'>insn_while</a>&lt;C: <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.FnOnce.html' title='core::ops::FnOnce'>FnOnce</a>() -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;, B: <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.FnOnce.html' title='core::ops::FnOnce'>FnOnce</a>()&gt;(&amp;self, cond: C, block: B)</code></h4>
+<div class='docblock'><p>Make instructions to run the block and continue running it so long
+as the condition is met</p>
+</div><h4 id='method.set_optimization_level' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.set_optimization_level' class='fnname'>set_optimization_level</a>(&amp;self, level: <a class='type' href='http://doc.rust-lang.org/nightly/libc/types/os/arch/c95/type.c_uint.html' title='libc::types::os::arch::c95::c_uint'>c_uint</a>)</code></h4>
+<div class='docblock'><p>Set the optimization level of the function, where the bigger the level,
+the more effort should be spent optimising</p>
+</div><h4 id='method.get_max_optimization_level' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.get_max_optimization_level' class='fnname'>get_max_optimization_level</a>() -&gt; <a class='type' href='http://doc.rust-lang.org/nightly/libc/types/os/arch/c95/type.c_uint.html' title='libc::types::os::arch::c95::c_uint'>c_uint</a></code></h4>
+<div class='docblock'><p>Get the max optimization level</p>
+</div><h4 id='method.set_recompilable' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.set_recompilable' class='fnname'>set_recompilable</a>(&amp;self)</code></h4>
+<div class='docblock'><p>Make this function a candidate for recompilation</p>
+</div><h4 id='method.get_entry' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.get_entry' class='fnname'>get_entry</a>(&amp;self) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;Block&lt;'a&gt;&gt;</code></h4>
+<div class='docblock'><p>Get the entry block of this function</p>
+</div><h4 id='method.get_current' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.get_current' class='fnname'>get_current</a>(&amp;self) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;Block&lt;'a&gt;&gt;</code></h4>
+<div class='docblock'><p>Get the current block of this function</p>
+</div><h4 id='method.compile' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.compile' class='fnname'>compile</a>(self) -&gt; <a class='struct' href='../jit/struct.CompiledFunction.html' title='jit::CompiledFunction'>CompiledFunction</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Compile the function</p>
+</div><h4 id='method.compile_with' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.compile_with' class='fnname'>compile_with</a>&lt;A, R, F: <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.FnOnce.html' title='core::ops::FnOnce'>FnOnce</a>( extern "C" fn(A) -&gt; R)&gt;(self, cb: F) -&gt; <a class='struct' href='../jit/struct.CompiledFunction.html' title='jit::CompiledFunction'>CompiledFunction</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Compile the function into a closure directly</p>
+</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><a class='stability Unmarked' title='No stability level'></a><code>impl&lt;'a&gt; <a class='trait' href='../jit/trait.NativeRef.html' title='jit::NativeRef'>NativeRef</a> for <a class='struct' href='../jit/struct.UncompiledFunction.html' title='jit::UncompiledFunction'>UncompiledFunction</a>&lt;'a&gt;</code></h3><div class='impl-items'><h4 id='method.as_ptr' class='method'><a class='stability Unmarked' title='No stability level'></a><code>unsafe fn <a href='#method.as_ptr' class='fnname'>as_ptr</a>(&amp;self) -&gt; <a class='type' href='../libjit-sys/type.jit_function_t.html' title='libjit-sys::jit_function_t'>jit_function_t</a></code></h4>
+<div class='docblock'><p>Convert to a native pointer</p>
+</div><h4 id='method.from_ptr' class='method'><a class='stability Unmarked' title='No stability level'></a><code>unsafe fn <a href='#method.from_ptr' class='fnname'>from_ptr</a>(ptr: <a class='type' href='../libjit-sys/type.jit_function_t.html' title='libjit-sys::jit_function_t'>jit_function_t</a>) -&gt; <a class='struct' href='../jit/struct.UncompiledFunction.html' title='jit::UncompiledFunction'>UncompiledFunction</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Convert from a native pointer</p>
+</div></div><h3 class='impl'><a class='stability Unmarked' title='No stability level'></a><code>impl&lt;'a&gt; <a class='trait' href='../jit/trait.Function.html' title='jit::Function'>Function</a>&lt;'a&gt; for <a class='struct' href='../jit/struct.UncompiledFunction.html' title='jit::UncompiledFunction'>UncompiledFunction</a>&lt;'a&gt;</code></h3><div class='impl-items'><h4 id='method.is_compiled' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.is_compiled' class='fnname'>is_compiled</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.get_signature' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.get_signature' class='fnname'>get_signature</a>(&amp;self) -&gt; <a class='struct' href='../jit/struct.Type.html' title='jit::Type'>Type</a></code></h4>
+</div><h3 class='impl'><a class='stability Unstable' title='Unstable: I/O and core have yet to be reconciled'></a><code>impl&lt;'a&gt; <a class='trait' href='http://doc.rust-lang.org/nightly/core/fmt/trait.Display.html' title='core::fmt::Display'>Display</a> for <a class='struct' href='../jit/struct.UncompiledFunction.html' title='jit::UncompiledFunction'>UncompiledFunction</a>&lt;'a&gt;</code></h3><div class='impl-items'><h4 id='method.fmt' class='method'><a class='stability Unstable' title='Unstable: I/O and core have yet to be reconciled'></a><code>fn <a href='#method.fmt' class='fnname'>fmt</a>(&amp;self, fmt: &amp;mut <a class='struct' href='http://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='http://doc.rust-lang.org/nightly/core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></h4>
+</div><h3 class='impl'><a class='stability Stable' title='Stable'></a><code>impl&lt;'a&gt; <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.Drop.html' title='core::ops::Drop'>Drop</a> for <a class='struct' href='../jit/struct.UncompiledFunction.html' title='jit::UncompiledFunction'>UncompiledFunction</a>&lt;'a&gt;</code></h3><div class='impl-items'><h4 id='method.drop' class='method'><a class='stability Stable' title='Stable'></a><code>fn <a href='#method.drop' class='fnname'>drop</a>(&amp;mut self)</code></h4>
+</div><h3 class='impl'><a class='stability Stable' title='Stable'></a><code>impl&lt;'a&gt; <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.Index.html' title='core::ops::Index'>Index</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>&gt; for <a class='struct' href='../jit/struct.UncompiledFunction.html' title='jit::UncompiledFunction'>UncompiledFunction</a>&lt;'a&gt;</code></h3><div class='impl-items'><h4 id='assoc_type.Output' class='type'><a class='stability Unmarked' title='No stability level'></a><code>type Output = <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<h4 id='method.index' class='method'><a class='stability Stable' title='Stable'></a><code>fn <a href='#method.index' class='fnname'>index</a>(&amp;self, param: &amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>) -&gt; &amp;<a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h4>
+<div class='docblock'><p>Get the value that corresponds to a specified function parameter.</p>
+</div></div><h3 id='derived_implementations'>Derived Implementations </h3><h3 class='impl'><a class='stability Stable' title='Stable'></a><code>impl&lt;'a&gt; <a class='trait' href='http://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html' title='core::cmp::PartialEq'>PartialEq</a> for <a class='struct' href='../jit/struct.UncompiledFunction.html' title='jit::UncompiledFunction'>UncompiledFunction</a>&lt;'a&gt;</code></h3><div class='impl-items'><h4 id='method.eq' class='method'><a class='stability Stable' title='Stable'></a><code>fn <a href='#method.eq' class='fnname'>eq</a>(&amp;self, __arg_0: &amp;<a class='struct' href='../jit/struct.UncompiledFunction.html' title='jit::UncompiledFunction'>UncompiledFunction</a>&lt;'a&gt;) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.ne' class='method'><a class='stability Stable' title='Stable'></a><code>fn <a href='#method.ne' class='fnname'>ne</a>(&amp;self, __arg_0: &amp;<a class='struct' href='../jit/struct.UncompiledFunction.html' title='jit::UncompiledFunction'>UncompiledFunction</a>&lt;'a&gt;) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+</div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <div id="help" class="hidden">
+        <div class="shortcuts">
+            <h1>Keyboard shortcuts</h1>
+            <dl>
+                <dt>?</dt>
+                <dd>Show this help dialog</dd>
+                <dt>S</dt>
+                <dd>Focus the search field</dd>
+                <dt>&larrb;</dt>
+                <dd>Move up in search results</dd>
+                <dt>&rarrb;</dt>
+                <dd>Move down in search results</dd>
+                <dt>&#9166;</dt>
+                <dd>Go to active search result</dd>
+            </dl>
+        </div>
+        <div class="infos">
+            <h1>Search tricks</h1>
+            <p>
+                Prefix searches with a type followed by a colon (e.g.
+                <code>fn:</code>) to restrict the search to a given type.
+            </p>
+            <p>
+                Accepted types are: <code>fn</code>, <code>mod</code>,
+                <code>struct</code>, <code>enum</code>,
+                <code>trait</code>, <code>typedef</code> (or
+                <code>tdef</code>).
+            </p>
+        </div>
+    </div>
+
+    
+
+    <script>
+        window.rootPath = "../";
+        window.currentCrate = "jit";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../jquery.js"></script>
+    <script src="../main.js"></script>
+    
+    <script async src="../search-index.js"></script>
+</body>
+</html>

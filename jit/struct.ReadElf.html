@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `ReadElf` struct in crate `jit`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, ReadElf">
+
+    <title>jit::ReadElf - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <section class="sidebar">
+        
+        <p class='location'><a href='index.html'>jit</a></p><div class='block mod'><h2>Modules</h2><a class='mod ' href='flags/index.html' title='Call flags to a function'>flags</a><a class='mod ' href='kind/index.html' title='The integer representation of a type'>kind</a><a class='mod ' href='typecs/index.html' title='Type constants'>typecs</a></div><div class='block struct'><h2>Structs</h2><a class='struct ' href='struct.AnyFunction.html' title=''>AnyFunction</a><a class='struct ' href='struct.Builder.html' title='A context that is in the build phase while generating IR'>Builder</a><a class='struct ' href='struct.CallFlags.html' title=''>CallFlags</a><a class='struct ' href='struct.CompiledFunction.html' title=''>CompiledFunction</a><a class='struct ' href='struct.Context.html' title=''>Context</a><a class='struct ' href='struct.Field.html' title='A single field of a struct'>Field</a><a class='struct ' href='struct.Fields.html' title='Iterates through all the fields of a struct'>Fields</a><a class='struct ' href='struct.Label.html' title='A label in the code that can be branched to in instructions'>Label</a><a class='struct ' href='struct.Needed.html' title='An ELF dependency iterator'>Needed</a><a class='struct ' href='struct.Params.html' title='Iterator through all the arguments a function takes'>Params</a><a class='struct current' href='struct.ReadElf.html' title=''>ReadElf</a><a class='struct ' href='struct.ReadElfError.html' title='An error from trying to open the ELF, including the filename'>ReadElfError</a><a class='struct ' href='struct.TaggedType.html' title=''>TaggedType</a><a class='struct ' href='struct.Type.html' title='An object that represents a native system type. Each `Type` represents a basic system type, be it a primitive, a struct, a union, a pointer, or a function signature. The library uses this information to lay out values in memory. Types are not attached to a context so they are reference-counted by LibJIT, so internally they are represented as `Rc&lt;TypeData&gt;`.'>Type</a><a class='struct ' href='struct.TypeKind.html' title=''>TypeKind</a><a class='struct ' href='struct.UncompiledFunction.html' title='A function which has not been compiled yet, so it can have instructions added to it.'>UncompiledFunction</a><a class='struct ' href='struct.Value.html' title='Values form the backbone of the storage system in `libjit`. Every value in the system, be it a constant, a local variable, or a temporary result, is represented by an object of type `Value`. The JIT then allocates registers or memory locations to the values as appropriate.'>Value</a><a class='struct ' href='struct.WriteElf.html' title=''>WriteElf</a></div><div class='block enum'><h2>Enums</h2><a class='enum ' href='enum.Abi.html' title='A platform&#39;s application binary interface'>Abi</a><a class='enum ' href='enum.ReadElfErrorCode.html' title='An error from trying to open the ELF'>ReadElfErrorCode</a></div><div class='block trait'><h2>Traits</h2><a class='trait ' href='trait.Compile.html' title='A type that can be compiled into a LibJIT representation'>Compile</a><a class='trait ' href='trait.Function.html' title='A function that can be compiled or not'>Function</a><a class='trait ' href='trait.NativeRef.html' title='A structure that wraps a native object'>NativeRef</a><a class='trait ' href='trait.StaticType.html' title='A static type that is owned by LibJIT itself'>StaticType</a></div><div class='block fn'><h2>Functions</h2><a class='fn ' href='fn.get.html' title='Get the Rust type given as a type descriptor'>get</a><a class='fn ' href='fn.init.html' title='Initialise the library and prepare for operations'>init</a><a class='fn ' href='fn.supports_threads.html' title='Check if the JIT supports theads'>supports_threads</a><a class='fn ' href='fn.supports_virtual_memory.html' title='Check if the JIT supports virtual memory'>supports_virtual_memory</a><a class='fn ' href='fn.uses_interpreter.html' title='Check if the JIT is using a fallback interpreter'>uses_interpreter</a></div>
+    </section>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press 'S' to search, '?' for more options..."
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>jit</a>::<wbr><a class='struct' href=''>ReadElf</a><wbr></span><span class='out-of-band'><span id='render-detail'>
+            <a id="collapse-all" href="#">[-]
+            </a>&nbsp;<a id="expand-all" href="#">[+]</a>
+        </span><a id='src-3038' href='../src/jit/macros.rs.html#96-98'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct ReadElf {
+    // some fields omitted
+}</pre><h2 id='methods'>Methods</h2><h3 class='impl'><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='struct' href='../jit/struct.ReadElf.html' title='jit::ReadElf'>ReadElf</a></code></h3><div class='impl-items'><h4 id='method.new' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.new' class='fnname'>new</a>(filename: &amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../jit/struct.ReadElf.html' title='jit::ReadElf'>ReadElf</a>, <a class='struct' href='../jit/struct.ReadElfError.html' title='jit::ReadElfError'>ReadElfError</a>&gt;</code></h4>
+<div class='docblock'><p>Open a new ELF binary</p>
+</div><h4 id='method.get_name' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.get_name' class='fnname'>get_name</a>(&amp;self) -&gt; &amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a></code></h4>
+<div class='docblock'><p>Get the name of this ELF binary</p>
+</div><h4 id='method.add_to_context' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.add_to_context' class='fnname'>add_to_context</a>(&amp;self, ctx: &amp;<a class='struct' href='../jit/struct.Context.html' title='jit::Context'>Context</a>)</code></h4>
+<h4 id='method.get_symbol' class='method'><a class='stability Unmarked' title='No stability level'></a><code>unsafe fn <a href='#method.get_symbol' class='fnname'>get_symbol</a>&lt;T&gt;(&amp;self, symbol: &amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; &amp;mut T</code></h4>
+<div class='docblock'><p>Get a symbol in the ELF binary</p>
+</div><h4 id='method.needed' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.needed' class='fnname'>needed</a>(&amp;self) -&gt; <a class='struct' href='../jit/struct.Needed.html' title='jit::Needed'>Needed</a></code></h4>
+<div class='docblock'><p>Iterate over the needed libraries</p>
+</div></div><h3 class='impl'><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='struct' href='../jit/struct.ReadElf.html' title='jit::ReadElf'>ReadElf</a></code></h3><div class='impl-items'><h4 id='method.new' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.new' class='fnname'>new</a>(filename: &amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../jit/struct.ReadElf.html' title='jit::ReadElf'>ReadElf</a>, <a class='struct' href='../jit/struct.ReadElfError.html' title='jit::ReadElfError'>ReadElfError</a>&gt;</code></h4>
+<div class='docblock'><p>Open a new ELF binary</p>
+</div><h4 id='method.get_name' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.get_name' class='fnname'>get_name</a>(&amp;self) -&gt; &amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a></code></h4>
+<div class='docblock'><p>Get the name of this ELF binary</p>
+</div><h4 id='method.add_to_context' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.add_to_context' class='fnname'>add_to_context</a>(&amp;self, ctx: &amp;<a class='struct' href='../jit/struct.Context.html' title='jit::Context'>Context</a>)</code></h4>
+<h4 id='method.get_symbol' class='method'><a class='stability Unmarked' title='No stability level'></a><code>unsafe fn <a href='#method.get_symbol' class='fnname'>get_symbol</a>&lt;T&gt;(&amp;self, symbol: &amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; &amp;mut T</code></h4>
+<div class='docblock'><p>Get a symbol in the ELF binary</p>
+</div><h4 id='method.needed' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.needed' class='fnname'>needed</a>(&amp;self) -&gt; <a class='struct' href='../jit/struct.Needed.html' title='jit::Needed'>Needed</a></code></h4>
+<div class='docblock'><p>Iterate over the needed libraries</p>
+</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.NativeRef.html' title='jit::NativeRef'>NativeRef</a> for <a class='struct' href='../jit/struct.ReadElf.html' title='jit::ReadElf'>ReadElf</a></code></h3><div class='impl-items'><h4 id='method.as_ptr' class='method'><a class='stability Unmarked' title='No stability level'></a><code>unsafe fn <a href='#method.as_ptr' class='fnname'>as_ptr</a>(&amp;self) -&gt; <a class='type' href='../libjit-sys/type.jit_readelf_t.html' title='libjit-sys::jit_readelf_t'>jit_readelf_t</a></code></h4>
+<div class='docblock'><p>Convert to a native pointer</p>
+</div><h4 id='method.from_ptr' class='method'><a class='stability Unmarked' title='No stability level'></a><code>unsafe fn <a href='#method.from_ptr' class='fnname'>from_ptr</a>(ptr: <a class='type' href='../libjit-sys/type.jit_readelf_t.html' title='libjit-sys::jit_readelf_t'>jit_readelf_t</a>) -&gt; <a class='struct' href='../jit/struct.ReadElf.html' title='jit::ReadElf'>ReadElf</a></code></h4>
+<div class='docblock'><p>Convert from a native pointer</p>
+</div></div><h3 class='impl'><a class='stability Stable' title='Stable'></a><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.Drop.html' title='core::ops::Drop'>Drop</a> for <a class='struct' href='../jit/struct.ReadElf.html' title='jit::ReadElf'>ReadElf</a></code></h3><div class='impl-items'><h4 id='method.drop' class='method'><a class='stability Stable' title='Stable'></a><code>fn <a href='#method.drop' class='fnname'>drop</a>(&amp;mut self)</code></h4>
+</div><h3 class='impl'><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.NativeRef.html' title='jit::NativeRef'>NativeRef</a> for <a class='struct' href='../jit/struct.ReadElf.html' title='jit::ReadElf'>ReadElf</a></code></h3><div class='impl-items'><h4 id='method.as_ptr' class='method'><a class='stability Unmarked' title='No stability level'></a><code>unsafe fn <a href='#method.as_ptr' class='fnname'>as_ptr</a>(&amp;self) -&gt; <a class='type' href='../libjit-sys/type.jit_readelf_t.html' title='libjit-sys::jit_readelf_t'>jit_readelf_t</a></code></h4>
+<div class='docblock'><p>Convert to a native pointer</p>
+</div><h4 id='method.from_ptr' class='method'><a class='stability Unmarked' title='No stability level'></a><code>unsafe fn <a href='#method.from_ptr' class='fnname'>from_ptr</a>(ptr: <a class='type' href='../libjit-sys/type.jit_readelf_t.html' title='libjit-sys::jit_readelf_t'>jit_readelf_t</a>) -&gt; <a class='struct' href='../jit/struct.ReadElf.html' title='jit::ReadElf'>ReadElf</a></code></h4>
+<div class='docblock'><p>Convert from a native pointer</p>
+</div></div><h3 class='impl'><a class='stability Stable' title='Stable'></a><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.Drop.html' title='core::ops::Drop'>Drop</a> for <a class='struct' href='../jit/struct.ReadElf.html' title='jit::ReadElf'>ReadElf</a></code></h3><div class='impl-items'><h4 id='method.drop' class='method'><a class='stability Stable' title='Stable'></a><code>fn <a href='#method.drop' class='fnname'>drop</a>(&amp;mut self)</code></h4>
+</div><h3 id='derived_implementations'>Derived Implementations </h3><h3 class='impl'><a class='stability Stable' title='Stable'></a><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/cmp/trait.Eq.html' title='core::cmp::Eq'>Eq</a> for <a class='struct' href='../jit/struct.ReadElf.html' title='jit::ReadElf'>ReadElf</a></code></h3><div class='impl-items'><h4 id='method.assert_receiver_is_total_eq' class='tymethod'><a class='stability Unstable' title='Unstable'></a><code>fn <a href='#tymethod.assert_receiver_is_total_eq' class='fnname'>assert_receiver_is_total_eq</a>(&amp;self)</code></h4>
+</div><h3 class='impl'><a class='stability Stable' title='Stable'></a><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html' title='core::cmp::PartialEq'>PartialEq</a> for <a class='struct' href='../jit/struct.ReadElf.html' title='jit::ReadElf'>ReadElf</a></code></h3><div class='impl-items'><h4 id='method.eq' class='method'><a class='stability Stable' title='Stable'></a><code>fn <a href='#method.eq' class='fnname'>eq</a>(&amp;self, __arg_0: &amp;<a class='struct' href='../jit/struct.ReadElf.html' title='jit::ReadElf'>ReadElf</a>) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.ne' class='method'><a class='stability Stable' title='Stable'></a><code>fn <a href='#method.ne' class='fnname'>ne</a>(&amp;self, __arg_0: &amp;<a class='struct' href='../jit/struct.ReadElf.html' title='jit::ReadElf'>ReadElf</a>) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+</div><h3 class='impl'><a class='stability Stable' title='Stable'></a><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/cmp/trait.Eq.html' title='core::cmp::Eq'>Eq</a> for <a class='struct' href='../jit/struct.ReadElf.html' title='jit::ReadElf'>ReadElf</a></code></h3><div class='impl-items'><h4 id='method.assert_receiver_is_total_eq' class='tymethod'><a class='stability Unstable' title='Unstable'></a><code>fn <a href='#tymethod.assert_receiver_is_total_eq' class='fnname'>assert_receiver_is_total_eq</a>(&amp;self)</code></h4>
+</div><h3 class='impl'><a class='stability Stable' title='Stable'></a><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html' title='core::cmp::PartialEq'>PartialEq</a> for <a class='struct' href='../jit/struct.ReadElf.html' title='jit::ReadElf'>ReadElf</a></code></h3><div class='impl-items'><h4 id='method.eq' class='method'><a class='stability Stable' title='Stable'></a><code>fn <a href='#method.eq' class='fnname'>eq</a>(&amp;self, __arg_0: &amp;<a class='struct' href='../jit/struct.ReadElf.html' title='jit::ReadElf'>ReadElf</a>) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.ne' class='method'><a class='stability Stable' title='Stable'></a><code>fn <a href='#method.ne' class='fnname'>ne</a>(&amp;self, __arg_0: &amp;<a class='struct' href='../jit/struct.ReadElf.html' title='jit::ReadElf'>ReadElf</a>) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+</div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <div id="help" class="hidden">
+        <div class="shortcuts">
+            <h1>Keyboard shortcuts</h1>
+            <dl>
+                <dt>?</dt>
+                <dd>Show this help dialog</dd>
+                <dt>S</dt>
+                <dd>Focus the search field</dd>
+                <dt>&larrb;</dt>
+                <dd>Move up in search results</dd>
+                <dt>&rarrb;</dt>
+                <dd>Move down in search results</dd>
+                <dt>&#9166;</dt>
+                <dd>Go to active search result</dd>
+            </dl>
+        </div>
+        <div class="infos">
+            <h1>Search tricks</h1>
+            <p>
+                Prefix searches with a type followed by a colon (e.g.
+                <code>fn:</code>) to restrict the search to a given type.
+            </p>
+            <p>
+                Accepted types are: <code>fn</code>, <code>mod</code>,
+                <code>struct</code>, <code>enum</code>,
+                <code>trait</code>, <code>typedef</code> (or
+                <code>tdef</code>).
+            </p>
+        </div>
+    </div>
+
+    
+
+    <script>
+        window.rootPath = "../";
+        window.currentCrate = "jit";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../jquery.js"></script>
+    <script src="../main.js"></script>
+    
+    <script async src="../search-index.js"></script>
+</body>
+</html>

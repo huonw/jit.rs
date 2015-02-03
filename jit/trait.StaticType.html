@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `StaticType` trait in crate `jit`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, StaticType">
+
+    <title>jit::StaticType - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <section class="sidebar">
+        
+        <p class='location'><a href='index.html'>jit</a></p><div class='block mod'><h2>Modules</h2><a class='mod ' href='flags/index.html' title='Call flags to a function'>flags</a><a class='mod ' href='kind/index.html' title='The integer representation of a type'>kind</a><a class='mod ' href='typecs/index.html' title='Type constants'>typecs</a></div><div class='block struct'><h2>Structs</h2><a class='struct ' href='struct.AnyFunction.html' title=''>AnyFunction</a><a class='struct ' href='struct.Builder.html' title='A context that is in the build phase while generating IR'>Builder</a><a class='struct ' href='struct.CallFlags.html' title=''>CallFlags</a><a class='struct ' href='struct.CompiledFunction.html' title=''>CompiledFunction</a><a class='struct ' href='struct.Context.html' title=''>Context</a><a class='struct ' href='struct.Field.html' title='A single field of a struct'>Field</a><a class='struct ' href='struct.Fields.html' title='Iterates through all the fields of a struct'>Fields</a><a class='struct ' href='struct.Label.html' title='A label in the code that can be branched to in instructions'>Label</a><a class='struct ' href='struct.Needed.html' title='An ELF dependency iterator'>Needed</a><a class='struct ' href='struct.Params.html' title='Iterator through all the arguments a function takes'>Params</a><a class='struct ' href='struct.ReadElf.html' title=''>ReadElf</a><a class='struct ' href='struct.ReadElfError.html' title='An error from trying to open the ELF, including the filename'>ReadElfError</a><a class='struct ' href='struct.TaggedType.html' title=''>TaggedType</a><a class='struct ' href='struct.Type.html' title='An object that represents a native system type. Each `Type` represents a basic system type, be it a primitive, a struct, a union, a pointer, or a function signature. The library uses this information to lay out values in memory. Types are not attached to a context so they are reference-counted by LibJIT, so internally they are represented as `Rc&lt;TypeData&gt;`.'>Type</a><a class='struct ' href='struct.TypeKind.html' title=''>TypeKind</a><a class='struct ' href='struct.UncompiledFunction.html' title='A function which has not been compiled yet, so it can have instructions added to it.'>UncompiledFunction</a><a class='struct ' href='struct.Value.html' title='Values form the backbone of the storage system in `libjit`. Every value in the system, be it a constant, a local variable, or a temporary result, is represented by an object of type `Value`. The JIT then allocates registers or memory locations to the values as appropriate.'>Value</a><a class='struct ' href='struct.WriteElf.html' title=''>WriteElf</a></div><div class='block enum'><h2>Enums</h2><a class='enum ' href='enum.Abi.html' title='A platform&#39;s application binary interface'>Abi</a><a class='enum ' href='enum.ReadElfErrorCode.html' title='An error from trying to open the ELF'>ReadElfErrorCode</a></div><div class='block trait'><h2>Traits</h2><a class='trait ' href='trait.Compile.html' title='A type that can be compiled into a LibJIT representation'>Compile</a><a class='trait ' href='trait.Function.html' title='A function that can be compiled or not'>Function</a><a class='trait ' href='trait.NativeRef.html' title='A structure that wraps a native object'>NativeRef</a><a class='trait current' href='trait.StaticType.html' title='A static type that is owned by LibJIT itself'>StaticType</a></div><div class='block fn'><h2>Functions</h2><a class='fn ' href='fn.get.html' title='Get the Rust type given as a type descriptor'>get</a><a class='fn ' href='fn.init.html' title='Initialise the library and prepare for operations'>init</a><a class='fn ' href='fn.supports_threads.html' title='Check if the JIT supports theads'>supports_threads</a><a class='fn ' href='fn.supports_virtual_memory.html' title='Check if the JIT supports virtual memory'>supports_virtual_memory</a><a class='fn ' href='fn.uses_interpreter.html' title='Check if the JIT is using a fallback interpreter'>uses_interpreter</a></div>
+    </section>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press 'S' to search, '?' for more options..."
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content trait">
+<h1 class='fqn'><span class='in-band'>Trait <a href='index.html'>jit</a>::<wbr><a class='trait' href=''>StaticType</a><wbr></span><span class='out-of-band'><span id='render-detail'>
+            <a id="collapse-all" href="#">[-]
+            </a>&nbsp;<a id="expand-all" href="#">[+]</a>
+        </span><a id='src-14407' href='../src/jit/types.rs.html#212-215'>[src]</a></span></h1>
+<pre class='rust trait'>pub trait StaticType: <a class='trait' href='http://doc.rust-lang.org/nightly/core/marker/trait.Copy.html' title='core::marker::Copy'>Copy</a> + <a class='trait' href='http://doc.rust-lang.org/nightly/core/cmp/trait.Eq.html' title='core::cmp::Eq'>Eq</a> + <a class='trait' href='http://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html' title='core::cmp::PartialEq'>PartialEq</a> {
+    fn <a href='#tymethod.get' class='fnname'>get</a>(self) -&gt; <a class='struct' href='../jit/struct.Type.html' title='jit::Type'>Type</a>;
+}</pre><div class='docblock'><p>A static type that is owned by LibJIT itself</p>
+</div>
+            <h2 id='required-methods'>Required Methods</h2>
+            <div class='methods'>
+        <h3 id='tymethod.get' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#tymethod.get' class='fnname'>get</a>(self) -&gt; <a class='struct' href='../jit/struct.Type.html' title='jit::Type'>Type</a></code></h3><div class='docblock'><p>Get type contained in this static type</p>
+</div></div>
+        <h2 id='implementors'>Implementors</h2>
+        <ul class='item-list' id='implementors-list'>
+    <li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.VOID.html' title='jit::typecs::VOID'>VOID</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.SBYTE.html' title='jit::typecs::SBYTE'>SBYTE</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.UBYTE.html' title='jit::typecs::UBYTE'>UBYTE</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.SHORT.html' title='jit::typecs::SHORT'>SHORT</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.USHORT.html' title='jit::typecs::USHORT'>USHORT</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.INT.html' title='jit::typecs::INT'>INT</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.UINT.html' title='jit::typecs::UINT'>UINT</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.NINT.html' title='jit::typecs::NINT'>NINT</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.NUINT.html' title='jit::typecs::NUINT'>NUINT</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.LONG.html' title='jit::typecs::LONG'>LONG</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.ULONG.html' title='jit::typecs::ULONG'>ULONG</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.FLOAT32.html' title='jit::typecs::FLOAT32'>FLOAT32</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.FLOAT64.html' title='jit::typecs::FLOAT64'>FLOAT64</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.NFLOAT.html' title='jit::typecs::NFLOAT'>NFLOAT</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.VOID_PTR.html' title='jit::typecs::VOID_PTR'>VOID_PTR</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.SYS_BOOL.html' title='jit::typecs::SYS_BOOL'>SYS_BOOL</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.SYS_CHAR.html' title='jit::typecs::SYS_CHAR'>SYS_CHAR</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.SYS_UCHAR.html' title='jit::typecs::SYS_UCHAR'>SYS_UCHAR</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.SYS_SHORT.html' title='jit::typecs::SYS_SHORT'>SYS_SHORT</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.SYS_USHORT.html' title='jit::typecs::SYS_USHORT'>SYS_USHORT</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.SYS_INT.html' title='jit::typecs::SYS_INT'>SYS_INT</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.SYS_UINT.html' title='jit::typecs::SYS_UINT'>SYS_UINT</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.SYS_LONG.html' title='jit::typecs::SYS_LONG'>SYS_LONG</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.SYS_ULONG.html' title='jit::typecs::SYS_ULONG'>SYS_ULONG</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.SYS_LONGLONG.html' title='jit::typecs::SYS_LONGLONG'>SYS_LONGLONG</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.SYS_ULONGLONG.html' title='jit::typecs::SYS_ULONGLONG'>SYS_ULONGLONG</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.SYS_FLOAT.html' title='jit::typecs::SYS_FLOAT'>SYS_FLOAT</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.SYS_DOUBLE.html' title='jit::typecs::SYS_DOUBLE'>SYS_DOUBLE</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.SYS_LONG_DOUBLE.html' title='jit::typecs::SYS_LONG_DOUBLE'>SYS_LONG_DOUBLE</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.VOID.html' title='jit::typecs::VOID'>VOID</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.SBYTE.html' title='jit::typecs::SBYTE'>SBYTE</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.UBYTE.html' title='jit::typecs::UBYTE'>UBYTE</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.SHORT.html' title='jit::typecs::SHORT'>SHORT</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.USHORT.html' title='jit::typecs::USHORT'>USHORT</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.INT.html' title='jit::typecs::INT'>INT</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.UINT.html' title='jit::typecs::UINT'>UINT</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.NINT.html' title='jit::typecs::NINT'>NINT</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.NUINT.html' title='jit::typecs::NUINT'>NUINT</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.LONG.html' title='jit::typecs::LONG'>LONG</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.ULONG.html' title='jit::typecs::ULONG'>ULONG</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.FLOAT32.html' title='jit::typecs::FLOAT32'>FLOAT32</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.FLOAT64.html' title='jit::typecs::FLOAT64'>FLOAT64</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.NFLOAT.html' title='jit::typecs::NFLOAT'>NFLOAT</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.VOID_PTR.html' title='jit::typecs::VOID_PTR'>VOID_PTR</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.SYS_BOOL.html' title='jit::typecs::SYS_BOOL'>SYS_BOOL</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.SYS_CHAR.html' title='jit::typecs::SYS_CHAR'>SYS_CHAR</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.SYS_UCHAR.html' title='jit::typecs::SYS_UCHAR'>SYS_UCHAR</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.SYS_SHORT.html' title='jit::typecs::SYS_SHORT'>SYS_SHORT</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.SYS_USHORT.html' title='jit::typecs::SYS_USHORT'>SYS_USHORT</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.SYS_INT.html' title='jit::typecs::SYS_INT'>SYS_INT</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.SYS_UINT.html' title='jit::typecs::SYS_UINT'>SYS_UINT</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.SYS_LONG.html' title='jit::typecs::SYS_LONG'>SYS_LONG</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.SYS_ULONG.html' title='jit::typecs::SYS_ULONG'>SYS_ULONG</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.SYS_LONGLONG.html' title='jit::typecs::SYS_LONGLONG'>SYS_LONGLONG</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.SYS_ULONGLONG.html' title='jit::typecs::SYS_ULONGLONG'>SYS_ULONGLONG</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.SYS_FLOAT.html' title='jit::typecs::SYS_FLOAT'>SYS_FLOAT</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.SYS_DOUBLE.html' title='jit::typecs::SYS_DOUBLE'>SYS_DOUBLE</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.StaticType.html' title='jit::StaticType'>StaticType</a> for <a class='struct' href='../jit/typecs/struct.SYS_LONG_DOUBLE.html' title='jit::typecs::SYS_LONG_DOUBLE'>SYS_LONG_DOUBLE</a></code></li>
+</ul><script type="text/javascript" async
+                              src="../implementors/jit/trait.StaticType.js">
+                      </script></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <div id="help" class="hidden">
+        <div class="shortcuts">
+            <h1>Keyboard shortcuts</h1>
+            <dl>
+                <dt>?</dt>
+                <dd>Show this help dialog</dd>
+                <dt>S</dt>
+                <dd>Focus the search field</dd>
+                <dt>&larrb;</dt>
+                <dd>Move up in search results</dd>
+                <dt>&rarrb;</dt>
+                <dd>Move down in search results</dd>
+                <dt>&#9166;</dt>
+                <dd>Go to active search result</dd>
+            </dl>
+        </div>
+        <div class="infos">
+            <h1>Search tricks</h1>
+            <p>
+                Prefix searches with a type followed by a colon (e.g.
+                <code>fn:</code>) to restrict the search to a given type.
+            </p>
+            <p>
+                Accepted types are: <code>fn</code>, <code>mod</code>,
+                <code>struct</code>, <code>enum</code>,
+                <code>trait</code>, <code>typedef</code> (or
+                <code>tdef</code>).
+            </p>
+        </div>
+    </div>
+
+    
+
+    <script>
+        window.rootPath = "../";
+        window.currentCrate = "jit";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../jquery.js"></script>
+    <script src="../main.js"></script>
+    
+    <script async src="../search-index.js"></script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `Compile` trait in crate `jit`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, Compile">
+
+    <title>jit::Compile - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <section class="sidebar">
+        
+        <p class='location'><a href='index.html'>jit</a></p><div class='block mod'><h2>Modules</h2><a class='mod ' href='flags/index.html' title='Call flags to a function'>flags</a><a class='mod ' href='kind/index.html' title='The integer representation of a type'>kind</a><a class='mod ' href='typecs/index.html' title='Type constants'>typecs</a></div><div class='block struct'><h2>Structs</h2><a class='struct ' href='struct.AnyFunction.html' title=''>AnyFunction</a><a class='struct ' href='struct.Builder.html' title='A context that is in the build phase while generating IR'>Builder</a><a class='struct ' href='struct.CallFlags.html' title=''>CallFlags</a><a class='struct ' href='struct.CompiledFunction.html' title=''>CompiledFunction</a><a class='struct ' href='struct.Context.html' title=''>Context</a><a class='struct ' href='struct.Field.html' title='A single field of a struct'>Field</a><a class='struct ' href='struct.Fields.html' title='Iterates through all the fields of a struct'>Fields</a><a class='struct ' href='struct.Label.html' title='A label in the code that can be branched to in instructions'>Label</a><a class='struct ' href='struct.Needed.html' title='An ELF dependency iterator'>Needed</a><a class='struct ' href='struct.Params.html' title='Iterator through all the arguments a function takes'>Params</a><a class='struct ' href='struct.ReadElf.html' title=''>ReadElf</a><a class='struct ' href='struct.ReadElfError.html' title='An error from trying to open the ELF, including the filename'>ReadElfError</a><a class='struct ' href='struct.TaggedType.html' title=''>TaggedType</a><a class='struct ' href='struct.Type.html' title='An object that represents a native system type. Each `Type` represents a basic system type, be it a primitive, a struct, a union, a pointer, or a function signature. The library uses this information to lay out values in memory. Types are not attached to a context so they are reference-counted by LibJIT, so internally they are represented as `Rc&lt;TypeData&gt;`.'>Type</a><a class='struct ' href='struct.TypeKind.html' title=''>TypeKind</a><a class='struct ' href='struct.UncompiledFunction.html' title='A function which has not been compiled yet, so it can have instructions added to it.'>UncompiledFunction</a><a class='struct ' href='struct.Value.html' title='Values form the backbone of the storage system in `libjit`. Every value in the system, be it a constant, a local variable, or a temporary result, is represented by an object of type `Value`. The JIT then allocates registers or memory locations to the values as appropriate.'>Value</a><a class='struct ' href='struct.WriteElf.html' title=''>WriteElf</a></div><div class='block enum'><h2>Enums</h2><a class='enum ' href='enum.Abi.html' title='A platform&#39;s application binary interface'>Abi</a><a class='enum ' href='enum.ReadElfErrorCode.html' title='An error from trying to open the ELF'>ReadElfErrorCode</a></div><div class='block trait'><h2>Traits</h2><a class='trait current' href='trait.Compile.html' title='A type that can be compiled into a LibJIT representation'>Compile</a><a class='trait ' href='trait.Function.html' title='A function that can be compiled or not'>Function</a><a class='trait ' href='trait.NativeRef.html' title='A structure that wraps a native object'>NativeRef</a><a class='trait ' href='trait.StaticType.html' title='A static type that is owned by LibJIT itself'>StaticType</a></div><div class='block fn'><h2>Functions</h2><a class='fn ' href='fn.get.html' title='Get the Rust type given as a type descriptor'>get</a><a class='fn ' href='fn.init.html' title='Initialise the library and prepare for operations'>init</a><a class='fn ' href='fn.supports_threads.html' title='Check if the JIT supports theads'>supports_threads</a><a class='fn ' href='fn.supports_virtual_memory.html' title='Check if the JIT supports virtual memory'>supports_virtual_memory</a><a class='fn ' href='fn.uses_interpreter.html' title='Check if the JIT is using a fallback interpreter'>uses_interpreter</a></div>
+    </section>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press 'S' to search, '?' for more options..."
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content trait">
+<h1 class='fqn'><span class='in-band'>Trait <a href='index.html'>jit</a>::<wbr><a class='trait' href=''>Compile</a><wbr></span><span class='out-of-band'><span id='render-detail'>
+            <a id="collapse-all" href="#">[-]
+            </a>&nbsp;<a id="expand-all" href="#">[+]</a>
+        </span><a id='src-615' href='../src/jit/compile.rs.html#11-16'>[src]</a></span></h1>
+<pre class='rust trait'>pub trait Compile {
+    fn <a href='#tymethod.compile' class='fnname'>compile</a>&lt;'a&gt;(&amp;self, func: &amp;<a class='struct' href='../jit/struct.UncompiledFunction.html' title='jit::UncompiledFunction'>UncompiledFunction</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;;
+    fn <a href='#tymethod.get_type' class='fnname'>get_type</a>() -&gt; <a class='struct' href='../jit/struct.Type.html' title='jit::Type'>Type</a>;
+}</pre><div class='docblock'><p>A type that can be compiled into a LibJIT representation</p>
+</div>
+            <h2 id='required-methods'>Required Methods</h2>
+            <div class='methods'>
+        <h3 id='tymethod.compile' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#tymethod.compile' class='fnname'>compile</a>&lt;'a&gt;(&amp;self, func: &amp;<a class='struct' href='../jit/struct.UncompiledFunction.html' title='jit::UncompiledFunction'>UncompiledFunction</a>&lt;'a&gt;) -&gt; <a class='struct' href='../jit/struct.Value.html' title='jit::Value'>Value</a>&lt;'a&gt;</code></h3><div class='docblock'><p>Get a JIT representation of this value</p>
+</div><h3 id='tymethod.get_type' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#tymethod.get_type' class='fnname'>get_type</a>() -&gt; <a class='struct' href='../jit/struct.Type.html' title='jit::Type'>Type</a></code></h3><div class='docblock'><p>Get the type descriptor that represents this type</p>
+</div></div>
+        <h2 id='implementors'>Implementors</h2>
+        <ul class='item-list' id='implementors-list'>
+    <li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a> for <a href='http://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a> for <a href='http://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a> for <a href='http://doc.rust-lang.org/nightly/std/primitive.f32.html'>f32</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a> for <a href='http://doc.rust-lang.org/nightly/std/primitive.isize.html'>isize</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a> for <a href='http://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a> for <a href='http://doc.rust-lang.org/nightly/std/primitive.i64.html'>i64</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a> for <a href='http://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a> for <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a> for <a href='http://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a> for <a href='http://doc.rust-lang.org/nightly/std/primitive.i16.html'>i16</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a> for <a href='http://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a> for <a href='http://doc.rust-lang.org/nightly/std/primitive.i8.html'>i8</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a> for <a href='http://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a> for <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a> for <a href='http://doc.rust-lang.org/nightly/core/primitive.char.html'>char</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl&lt;T&gt; <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a> for *mut T <span class='where'>where T: <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a></span></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl&lt;T&gt; <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a> for *const T <span class='where'>where T: <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a></span></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl&lt;T&gt; <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a> for &amp;'static T <span class='where'>where T: <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a></span></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a> for <a class='struct' href='http://doc.rust-lang.org/nightly/std/ffi/c_str/struct.CString.html' title='std::ffi::c_str::CString'>CString</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl&lt;A, B&gt; <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a> for <a href='http://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(A, B)</a> <span class='where'>where A: <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a>, B: <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a></span></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl&lt;A, B, C&gt; <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a> for <a href='http://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(A, B, C)</a> <span class='where'>where A: <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a>, B: <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a>, C: <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a></span></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl&lt;A, B, C, D&gt; <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a> for <a href='http://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(A, B, C, D)</a> <span class='where'>where A: <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a>, B: <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a>, C: <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a>, D: <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a></span></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl&lt;A, B, C, D, E&gt; <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a> for <a href='http://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(A, B, C, D, E)</a> <span class='where'>where A: <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a>, B: <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a>, C: <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a>, D: <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a>, E: <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a></span></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl&lt;R: <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a>&gt; <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a> for fn() -&gt; R</code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl&lt;R: <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a>&gt; <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a> for  extern "C" fn() -&gt; R</code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl&lt;A: <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a>, R: <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a>&gt; <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a> for fn(A) -&gt; R</code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl&lt;A: <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a>, R: <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a>&gt; <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a> for  extern "C" fn(A) -&gt; R</code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl&lt;A: <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a>, B: <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a>, R: <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a>&gt; <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a> for fn(A, B) -&gt; R</code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl&lt;A: <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a>, B: <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a>, R: <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a>&gt; <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a> for  extern "C" fn(A, B) -&gt; R</code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl&lt;A: <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a>, B: <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a>, C: <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a>, R: <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a>&gt; <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a> for fn(A, B, C) -&gt; R</code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl&lt;A: <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a>, B: <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a>, C: <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a>, R: <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a>&gt; <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a> for  extern "C" fn(A, B, C) -&gt; R</code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl&lt;A: <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a>, B: <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a>, C: <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a>, D: <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a>, R: <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a>&gt; <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a> for fn(A, B, C, D) -&gt; R</code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl&lt;A: <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a>, B: <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a>, C: <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a>, D: <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a>, R: <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a>&gt; <a class='trait' href='../jit/trait.Compile.html' title='jit::Compile'>Compile</a> for  extern "C" fn(A, B, C, D) -&gt; R</code></li>
+</ul><script type="text/javascript" async
+                              src="../implementors/jit/trait.Compile.js">
+                      </script></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <div id="help" class="hidden">
+        <div class="shortcuts">
+            <h1>Keyboard shortcuts</h1>
+            <dl>
+                <dt>?</dt>
+                <dd>Show this help dialog</dd>
+                <dt>S</dt>
+                <dd>Focus the search field</dd>
+                <dt>&larrb;</dt>
+                <dd>Move up in search results</dd>
+                <dt>&rarrb;</dt>
+                <dd>Move down in search results</dd>
+                <dt>&#9166;</dt>
+                <dd>Go to active search result</dd>
+            </dl>
+        </div>
+        <div class="infos">
+            <h1>Search tricks</h1>
+            <p>
+                Prefix searches with a type followed by a colon (e.g.
+                <code>fn:</code>) to restrict the search to a given type.
+            </p>
+            <p>
+                Accepted types are: <code>fn</code>, <code>mod</code>,
+                <code>struct</code>, <code>enum</code>,
+                <code>trait</code>, <code>typedef</code> (or
+                <code>tdef</code>).
+            </p>
+        </div>
+    </div>
+
+    
+
+    <script>
+        window.rootPath = "../";
+        window.currentCrate = "jit";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../jquery.js"></script>
+    <script src="../main.js"></script>
+    
+    <script async src="../search-index.js"></script>
+</body>
+</html>
